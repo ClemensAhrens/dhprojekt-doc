@@ -1,0 +1,223 @@
+\documentclass[a4paper,12pt,titlepage=true, ngerman]{scrartcl}
+%\usepackage{ngerman}, 
+%\usepackage[ngerman]{babel}
+
+
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage[babel, german=quotes]{csquotes}
+
+
+\usepackage{scrhack}
+\KOMAoptions{BCOR=8mm}
+%\KOMAoptions{toc=flat}
+% \KOMAoptions{toc=graduated, toc=bibliography}
+
+% \renewcommand*\sectfont{\rmfamily\mdseries\scshape}
+\setkomafont{section}{\rmfamily\bfseries\LARGE}
+% \setkomafont{sectionentry}{\rmfamily\bfseries\scshape\Large}
+\setkomafont{subsection}{\rmfamily\bfseries\Large}
+\setkomafont{subsubsection}{\rmfamily\bfseries\large}
+%\setkomafont{chapter}{\rmfamily\bfseries\scshape\huge}
+%  \setkomafont{partentry}{\rmfamily\bfseries\scshape}
+% \setkomafont{chapterentry}{\rmfamily\bfseries\scshape}
+\setkomafont{partentry}{\rmfamily\bfseries\scshape}
+\setkomafont{part}{\rmfamily\bfseries\scshape\huge}
+\setkomafont{partnumber}{\rmfamily\bfseries\scshape\huge}
+\setkomafont{partentrypagenumber}{\rmfamily\bfseries\scshape}
+
+\setkomafont{descriptionlabel}{\bfseries}
+
+%  scrhack to fuck float error message
+
+%%%%  for page head and foot %%%%%%%
+\usepackage[automark]{scrpage2}
+\pagestyle{scrheadings}
+\KOMAoptions{headsepline=true}
+\setheadsepline{.4pt}
+\setkomafont{pageheadfoot}{\normalfont\normalcolor\upshape} 
+
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{4}
+
+\usepackage[T1]{fontenc} % to make Sa\"ibi searchable
+\usepackage[protrusion=true,expansion=true]{microtype}
+% \usepackage{microtype}
+% \usepackage{setspace}\setstretch{1.2}
+
+
+
+% \usepackage{lmodern} 
+
+
+%  \usepackage{palatino}\linespread{1.05}
+ \usepackage{mathpazo}\linespread{1.05}  
+\usepackage[scaled=.95]{helvet}
+   \usepackage{courier}
+   \usepackage[scaled]{berasans}
+ 
+% \usepackage[bitstream-charter]{mathdesign}  %%%%%%%%%%%%%%%%%%%%%  FINAL VERSION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\usepackage[style=authoryear,
+ maxnames=1,
+  maxbibnames=99,                  %%%%%%%%     TODO  activate
+ uniquename=init
+]{biblatex}
+\bibliography{literature.bib}
+
+
+
+
+
+\usepackage{calc}
+\usepackage{ifthen}
+
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows}
+
+\tikzstyle{task} = [diamond, draw, fill=green!20, 
+    text width=4.5em, text badly centered, node distance=2cm, inner sep=0pt]
+\tikzstyle{comp} = [rectangle, draw, fill=blue!20, 
+    text width=5em, text centered, rounded corners, minimum height=4em, node distance=2cm]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{line2} = [draw, double, -latex']
+\tikzstyle{human} = [draw, ellipse,fill=red!20, text width=5em, text centered, node distance=2cm,
+    minimum height=3em]
+\tikzstyle{decision} = [diamond, draw, fill=green!20, 
+    text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, fill=blue!20, 
+    text width=5em, text centered, rounded corners, minimum height=4em]
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, text width=5em, text centered, node distance=3cm,
+    minimum height=2em]
+
+% % Pie chart
+\newcommand{\slice}[4]{
+  \pgfmathparse{0.5*#1+0.5*#2}
+  \let\midangle\pgfmathresult
+
+  % slice
+  \draw[thick,fill=black!10] (0,0) -- (#1:1) arc (#1:#2:1) -- cycle;
+
+  % outer label
+  \node[label=\midangle:#4] at (\midangle:1) {};
+
+  % inner label
+  \pgfmathparse{min((#2-#1-10)/110*(-0.3),0)}
+  \let\temp\pgfmathresult
+  \pgfmathparse{max(\temp,-0.5) + 0.8}
+  \let\innerpos\pgfmathresult
+  \node at (\midangle:\innerpos) {#3};
+}
+
+\usepackage{bchart}
+
+
+\usepackage{setspace}
+\onehalfspacing
+
+% \usepackage{framed}
+
+\usepackage{graphicx}
+
+\usepackage{ownstyle}
+
+\usepackage{cleveref}
+
+\title{Dokumentation zur Arbeit von Gruppe 2 im Projekt ''Praxis der Digital Humanities''} % title
+\author{Clemens Ahrens}
+
+\begin{document}
+\begin{titlepage}
+
+\begin{center}
+
+\vspace*{100pt}
+
+\large\textbf{Dokumentation zur Arbeit von Gruppe 2 im Projekt ''Praxis der Digital Humanities''}% title
+
+\vfill
+
+Schriftliche Dokumentation
+
+im Seminar
+
+\emph{Praxis der Digital Humanities}
+
+
+Leitung:
+
+\textbf{Prof.\ Dr.\ Caroline Sporleder}% leitung
+
+WiSe 2014/2015% semester
+
+\bigskip
+
+an der Universität Trier
+
+Fachbereich II
+
+\bigskip
+
+\bigskip
+
+Verfasser:
+
+\textbf{Chris} %TODO
+
+Matrikelnummer:
+
+xxxxxx
+
+\textbf{Andre} %TODO
+
+Matrikelnummer:
+
+xxxxxx
+
+\textbf{Clemens Ahrens}
+
+Matrikelnummer:
+
+1116125
+
+% \bigskip
+
+% \vfill
+
+\end{center}
+
+\end{titlepage}
+
+\microtypesetup{protrusion=false}
+ \tableofcontents%[liststotoc]
+\microtypesetup{protrusion=true}
+
+% \newpage
+% \listoffigures
+% \listoftables
+
+\newpage
+
+\input{clemens_text}
+
+\input{clemens_code}
+
+% \input{generierung}
+
+% \input{normalisierung}
+
+% \input{evaluierung}
+
+% \input{ausblick}
+
+% \printshorthands[title=Abkürzungsverzeichnis]
+\printbibliography[title=Literaturverzeichnis, heading=bibintoc]
+\newpage
+\listoffigures
+\listoftables
+\newpage
+
+\include{erklaerung}
+
+\end{document}
