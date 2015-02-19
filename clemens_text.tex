@@ -6,9 +6,30 @@ Analysiert wurde \href{http://www.bart-anaphora.org/}{BART} in der Version 2.0,
 wie sie \href{http://www.bart-anaphora.org/release/bart-2.0.tar.gz}{hier} zu finden ist.
 Es stehen dem Nutzer zwei Modi zur Nutzung zur Verfügung.
 \begin{itemize}
-\item BART-Server als end-to-end Blackbox Lösung
+\item BART-WebServer als end-to-end Blackbox Lösung
 \item BART-full zum Trainieren eines neuen Modells
 \end{itemize}
+Erstere erzeugt aus einem Rohtext Input einen Output der Form, 
+die in Abb.\ref{bart_webUI_output} zu sehen ist.
+
+\begin{lstlisting}[language=xml]
+?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE words SYSTEM "words.dtd">
+<words>
+  <word id="word_1">Late</word>
+  <word id="word_2">in</word>
+  <word id="word_3">the</word>
+  <word id="word_4">afternoon</word>
+  <word id="word_5">of</word>
+  <word id="word_6">a</word>
+  <word id="word_7">chilly</word>
+  <word id="word_8">day</word>
+  <word id="word_9">in</word>
+  <word id="word_10">February</word>
+  <word id="word_11">,</word>
+  ...
+  \end{lstlisting}
+
 
 \begin{figure}[ht]
 \begin{center}
