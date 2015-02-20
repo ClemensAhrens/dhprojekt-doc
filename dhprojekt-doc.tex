@@ -7,6 +7,10 @@
 \usepackage[ngerman]{babel}
 \usepackage[babel, german=quotes]{csquotes}
 \usepackage{hyperref}
+%\hypersetup{
+%colorlinks=true, linktocpage=false, pdfborder={0 0 0}, pdfstartview=FitV, 
+%urlcolor=Black, linkcolor=Black, citecolor=Black, %pdfstartpage=3, 
+%}
 \usepackage{graphicx}
 
 \usepackage{scrhack}
@@ -125,6 +129,13 @@
 
 \usepackage{cleveref}
 
+
+%###########################################################################
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%###########################################################################
+
+\pagenumbering{roman}
+
 \title{Dokumentation zur Arbeit von Gruppe 2 im Projekt ''Praxis der Digital Humanities''} % title
 \author{Clemens Ahrens}
 
@@ -190,6 +201,20 @@ Matrikelnummer:
 
 \end{titlepage}
 
+
+%###########################################################################
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%###########################################################################
+
+\include{erklaerung}
+
+
+%###########################################################################
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%###########################################################################
+
+\newpage
+
 \microtypesetup{protrusion=false}
  \tableofcontents%[liststotoc]
 \microtypesetup{protrusion=true}
@@ -198,19 +223,132 @@ Matrikelnummer:
 % \listoffigures
 % \listoftables
 
+
+%###########################################################################
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%###########################################################################
+
 \newpage
+\pagenumbering{arabic}
+
+\section{Einleitung}\label{Einleitung} %TODO
+ 
+Im Rahmen des Seminars \emph{Praxis der Digital Humanities} haben sich die einzelnen Gruppen vorgenommen, ein Werkzeug zu entwickeln, das literaturwissenschaftliche Arbeit unterstützt. Diese Hilfssoftware soll dazu dienen, die stereotype Darstellung von einzelnen Personen oder Gruppen in Texten zu analysieren und zu visualiseren. Vor diesem Hintergrund baut die hier vorgestellte Arbeit der zweiten Gruppe auf den Vorverarbeitungsschritten der ersten Gruppe auf und fügt für die drei Werke \emph{Uncle Tom's Cabin}, \emph{Uncle Tom's Cabin} und \emph{Uncle Tom's Cabin} \textbf{Informationen zu Koreferenzketten} hinzu. Auf diese Weise trägt die Gruppe zwei neben der \emph{Named Entity Recognition} als Vorverarbeitungsschritt der ersten Gruppe dazu bei, dass die Protagonisten erkennbar werden und so von der dritten Gruppe auf ihre Darstellung hin untersucht werden können.
+
+Im Folgenden werden \emph{Bart 2.0}, \emph{DCoref} und \emph{Reconcile} als Softwarew vorgestellt, die zunächst für die Koreferenzresolution in Betracht gezogen wurden. Dieser Ausgangspunkt stellte die zweite Gruppe vor die Aufgabe, die einzelnen Werkzeuge zu bewerten und zu vergleichen. Nach der Zusammenfassung des Verlaufs und der Ergebnisse dieses Vergleichs wird dann kurz dargestellt, welche Formatierungsanforderungen für die Schnittstellen zu den anderen Gruppen beachtet wurden und wie kapitelbezogene Koreferenzketten zu kapitelübergreifenden Ketten zusammengeführt wurden. Zuletzt folgt ein Beispiel für die Verwendung und die Ausgabe eines der Werkzeuge.
+
+
+%###########################################################################
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%###########################################################################
+
+\newpage
+
+\section{Ansätze zur Koreferenzresolution}\label{Ansätze zur Koreferenzresolution} %TODO
+
+
+%###########################################################################
+
+\subsection{BART 2.0}
 
 \input{clemens_text}
 
-\input{clemens_code}
 
-% \input{generierung}
+%###########################################################################
 
-% \input{normalisierung}
+\subsection{DCoref}
 
-% \input{evaluierung}
+Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.   
 
-% \input{ausblick}
+Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.   
+
+Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer.
+
+
+%###########################################################################
+
+\subsection{Reconcile}
+
+Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.   
+
+Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.   
+
+Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer.
+
+
+%###########################################################################
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%###########################################################################
+
+\newpage
+
+\section{Verlauf der Gruppenarbeit}\label{Verlauf der Gruppenarbeit} %TODO
+
+
+%###########################################################################
+
+\subsection{Vergleich}
+
+Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.   
+
+Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.   
+
+Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer.
+
+
+%###########################################################################
+
+\subsection{Formatierung}
+
+Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.   
+
+Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.   
+
+Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer.
+
+
+%###########################################################################
+
+\subsection{Indizierung}
+
+\input{./text/chris/text1.tex}
+
+%\input{clemens_text}
+
+%\input{clemens_code} %TODO
+
+% \input{generierung} %TODO
+
+% \input{normalisierung} %TODO
+
+% \input{evaluierung} %TODO
+
+% \input{ausblick} %TODO
+
+
+%###########################################################################
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%###########################################################################
+
+\newpage
+
+\section{Demonstration}\label{Demonstration} %TODO
+
+
+%###########################################################################
+
+\subsection{DCoref}
+
+Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.   
+
+Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer.
+
+
+%###########################################################################
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%###########################################################################
+
+\newpage
 
 % \printshorthands[title=Abkürzungsverzeichnis]
 \printbibliography[title=Literaturverzeichnis, heading=bibintoc]
@@ -219,6 +357,6 @@ Matrikelnummer:
 \listoftables
 \newpage
 
-\include{erklaerung}
+
 
 \end{document}
