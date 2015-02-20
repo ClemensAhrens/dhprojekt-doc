@@ -1,11 +1,16 @@
+% !TEX encoding = UTF-8
 \documentclass[a4paper,12pt,titlepage=true, ngerman]{scrartcl}
 %\usepackage{ngerman}, 
 %\usepackage[ngerman]{babel}
 
-
 \usepackage[utf8]{inputenc}
 \usepackage[ngerman]{babel}
-\usepackage[babel, german=quotes]{csquotes}
+\usepackage[autostyle, babel, german=quotes]{csquotes}
+\usepackage
+	[backend=biber, style=authoryear-comp, maxbibnames=3,
+	 isbn=false, doi=false, eprint=false, dashed=false]{biblatex}
+\ExecuteBibliographyOptions{maxcitenames=2}
+\bibliography{literature.bib}
 \usepackage{hyperref}
 %\hypersetup{
 %colorlinks=true, linktocpage=false, pdfborder={0 0 0}, pdfstartview=FitV, 
@@ -63,17 +68,11 @@
  
 % \usepackage[bitstream-charter]{mathdesign}  %%%%%%%%%%%%%%%%%%%%%  FINAL VERSION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-\usepackage[style=authoryear,
- maxnames=1,
-  maxbibnames=99,                  %%%%%%%%     TODO  activate
- uniquename=init
-]{biblatex}
-\bibliography{literature.bib}
-
-
-
-
+%\usepackage[style=authoryear,
+% 	maxnames=1,
+%  	maxbibnames=99,                  %%%%%%%%     TODO  activate
+% uniquename=init
+%]{biblatex}
 
 \usepackage{calc}
 \usepackage{ifthen}
@@ -258,11 +257,7 @@ Im Folgenden werden \emph{Bart 2.0}, \emph{DCoref} und \emph{Reconcile} als Soft
 
 \subsection{DCoref}
 
-Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.   
-
-Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.   
-
-Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer.
+\input{./text/chris/ansatz_dcoref.tex}
 
 
 %###########################################################################
@@ -311,7 +306,7 @@ Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming 
 
 \subsection{Indizierung}
 
-\input{./text/chris/text1.tex}
+
 
 %\input{clemens_text}
 
@@ -356,7 +351,6 @@ Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming 
 \listoffigures
 \listoftables
 \newpage
-
 
 
 \end{document}

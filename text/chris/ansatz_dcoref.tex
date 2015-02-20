@@ -1,0 +1,19 @@
+% !TEX encoding = UTF-8
+Das Werkzeug \emph{DCoref} ist ein deterministisches Modul zur Koreferenzresolution und ist Teil der \emph{Stanford CoreNLP}. Für die Verwendung dieses Moduls ist vorausgesetzt, dass andere Module vorher auf die Eingabedaten angewendet worden sind \autocite[]{chris_stanford_dcoref}. Die Module für Wortart- und Lemmabestimmung sowie Named Entitiy Recognition und für einen Parser müssen als sogenannte Annotatoren beim Verwenden der \emph{Stanford CoreNLP} wie in Listing \ref{dcoref:required_annotators} angebeben werden.
+
+\begin{lstlisting}[label=dcoref:required_annotators, language=Java, caption=Angabe vorausgesetzter Annotatoren in Java]
+//	configure properties for pipeline of the Stanford CoreNLP
+Properties properties = new Properties();
+properties.setProperty("annotators", 
+		"pos, lemma, ner, parse, dcoref");
+//	[...] set more properties and instantiate pipeline
+StanfordCoreNLP pipeline = new StanfordCoreNLP(properties);
+\end{lstlisting}
+
+% ist deterministisches Modul der Stanford CoreNLP
+%hasngt von anderen Modulen ab (pos, lemma, ner, parse)
+%diese Module msussen in der Pipeline vorher angewendet werden 
+%arbeitet mit Sieben
+%erste Stufe: bevorzugt Recall (detection)
+%zweite Stufe: Siebe bevorzugen Precision
+%Post-Processing: mehr Precision (?)
