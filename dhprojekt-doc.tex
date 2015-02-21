@@ -247,9 +247,9 @@ Matrikelnummer: 1007830
 
 \section{Einleitung}\label{Einleitung} %TODO
  
-Im Rahmen des Seminars \emph{Praxis der Digital Humanities} haben sich die einzelnen Gruppen vorgenommen, ein Werkzeug zu entwickeln, das literaturwissenschaftliche Arbeit unterstützt. Diese Hilfssoftware soll dazu dienen, die stereotype Darstellung von einzelnen Personen oder Gruppen in Texten zu analysieren und zu visualiseren. Vor diesem Hintergrund baut die hier vorgestellte Arbeit der zweiten Gruppe auf den Vorverarbeitungsschritten der ersten Gruppe auf und fügt für die drei Werke \emph{Uncle Tom's Cabin}  \autocite[]{chris_uncle}, \emph{To Kill a Mockingbird}  \autocite[]{chris_bird} und \emph{The Adventures of Huckleberry Finn: Tom Sawyer} \autocite[]{chris_adventures} \textbf{Informationen zu Koreferenzketten} hinzu. Auf diese Weise trägt die Gruppe zwei neben der \emph{Named Entity Recognition} als Vorverarbeitungsschritt der ersten Gruppe dazu bei, dass die Protagonisten erkennbar werden und so von der dritten Gruppe auf ihre literarische Darstellung hin untersucht werden können.
+Im Rahmen des Seminars \emph{Praxis der Digital Humanities} haben sich die einzelnen Gruppen vorgenommen, ein Werkzeug zu entwickeln, das literaturwissenschaftliche Arbeit unterstützt. Diese Hilfssoftware soll dazu dienen, die stereotype Darstellung von einzelnen Personen oder Gruppen in Texten zu analysieren und zu visualisieren. Vor diesem Hintergrund baut die hier vorgestellte Arbeit der zweiten Gruppe auf den Vorverarbeitungsschritten der ersten Gruppe auf und fügt für die drei Werke \emph{Uncle Tom's Cabin}  \autocite[]{chris_uncle}, \emph{To Kill a Mockingbird}  \autocite[]{chris_bird} und \emph{The Adventures of Huckleberry Finn: Tom Sawyer} \autocite[]{chris_adventures} \textbf{Informationen zu Koreferenzketten} hinzu. Auf diese Weise trägt die Gruppe zwei neben der \emph{Named Entity Recognition} als Vorverarbeitungsschritt der ersten Gruppe dazu bei, dass die Protagonisten erkennbar werden und so von der dritten Gruppe auf ihre literarische Darstellung hin untersucht werden können.
 
-Im Folgenden werden \emph{Bart 2.0}, \emph{DCoref} und \emph{Reconcile} als Softwarew vorgestellt, die zunächst für die Koreferenzresolution in Betracht gezogen wurden. Dieser Ausgangspunkt stellte die zweite Gruppe vor die Aufgabe, die einzelnen Werkzeuge zu bewerten und zu vergleichen. Nach der Zusammenfassung des Verlaufs und der Ergebnisse dieses Vergleichs wird dann kurz dargestellt, welche Formatierungsanforderungen für die Schnittstellen zu den anderen Gruppen beachtet wurden und wie kapitelbezogene Koreferenzketten zu kapitelübergreifenden Ketten zusammengeführt wurden. Zuletzt folgt ein Beispiel für die Verwendung und die Ausgabe eines der Werkzeuge.
+Im Folgenden werden \emph{Bart 2.0}, \emph{DCoref} und \emph{Reconcile} als Softwarewerkzeuge vorgestellt, die zunächst für die Koreferenzresolution in Betracht gezogen wurden. Dieser Ausgangspunkt stellte die zweite Gruppe vor die Aufgabe, die einzelnen Werkzeuge zu bewerten und zu vergleichen. Nach der Zusammenfassung des Verlaufs und der Ergebnisse dieses Vergleichs wird dann kurz dargestellt, welche Formatierungsanforderungen für die Schnittstellen zu den anderen Gruppen beachtet wurden und wie kapitelbezogene Koreferenzketten zu kapitelübergreifenden Ketten zusammengeführt wurden. Zuletzt folgt ein Beispiel für die Verwendung und die Ausgabe eines der Werkzeuge.
 
 
 %###########################################################################
@@ -308,19 +308,47 @@ Im Folgenden werden \emph{Bart 2.0}, \emph{DCoref} und \emph{Reconcile} als Soft
 
 \subsubsection{Ausgangssituation}
 
-Wie bereits erwähnt, wurde \emph{BART 2.0} für den Vergleich der Ansätze zur Koreferenzresolution als Kandidat verworfen. Übrig geblieben sind also \emph{DCoref} und \emph{Reconcile}. Das Ziel des Vergleichs war es, mit einem MUC-Scorer anhand der Werte Precision, Recall und F-Score den besseren der verbleibenden zwei Kandidaten zu finden. Um einen Goldstandard für den Vergleich der beiden Ansätze zu erhalten, wurde die erste Hälfte des ersten Kapitels aus \emph{Uncle Tom's Cabin} \autocite[]{chris_uncle} als Testdatensatz für eine manuelle Annotierung mit Unterstützung des dafür vorgesehenen Softwarewerkzeugs \href{http://mmax2.sourceforge.net/}{MMAX} verwendet. 
+Wie bereits erwähnt, wurde \emph{BART 2.0} für den Vergleich der Ansätze zur Koreferenzresolution als Kandidat verworfen. Übrig geblieben sind also \emph{DCoref} und \emph{Reconcile}. Das Ziel des Vergleichs war es, mit einem MUC-Scorer anhand der Werte Precision, Recall und F-Score den besseren der verbleibenden zwei Kandidaten zu finden. Um einen Goldstandard für den Vergleich der beiden Ansätze zu erhalten, wurde die erste Hälfte des ersten Kapitels aus \emph{Uncle Tom's Cabin} \autocite[]{chris_uncle} als Testdatensatz für eine manuelle Annotierung mit Unterstützung des dafür vorgesehenen Softwarewerkzeugs \emph{MMAX} \autocite*[]{chris_mmax} verwendet \autocite[]{chris_mmax_coll}. Diese manuelle Annotierung sollte durch zwei Gruppenmitglieder durchgeführt und dann verglichen und verbessert werden, bevor der daraus resultierende Goldstandard für die Bewertung der beiden Ansätze verwendet wurde.
 
 
 %~~~
 
 \subsubsection{Probleme mit MMAX}%TODO
 
-Probleme mit MMAX
+Die Verwendung von \emph{MMAX} hat bereits von Anfang an zu Problemen geführt. Trotz der vorhandenen Dokumentation war es schwierig, \emph{MMAX} zu verwenden. Beide Annotatoren hatten zunächst den Eindruck, das Werkzeug nicht richtig zu verwenden. Ein Beispiel dafür zeigt Abbildung \ref{mmax:anzeige}.
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=15cm]{./img/cmich/cm_mmax.jpg}
+ % bart_webUI_output.png: 819x724 pixel, 72dpi, 28.89x25.54 cm, bb=0 0 819 724
+\caption{MMAX - Beispiel der Anzeige}
+\label{mmax:anzeige}
+\end{center}
+\end{figure}
+
+Darin ist zu sehen, wie mithilfe von \emph{MMAX} versucht wurde, eine Koreferenzkette für den Protagonisten \emph{Haley} in \emph{Uncle Tom's Cabin} \autocite[]{chris_uncle} zu erstellen. Die Hervorhebung der Kette in gelber Farbe kann über ein mit einem Rechtsklick erreichbares Kontextmenü aktiviert werden, allerdings findet diese Hervorhebung nur in dem im aktuellen Fensterausschnitt sichtbaren Teil des Textes statt. Die türkise Farbe war ursprünglich als Markierungsfarbe für die Kette eines bestimmten Protagonisten gedacht. Dieses Vorhaben hat jedoch nicht funktioniert, da jedes einzelne Wort im Text mit türkiser Farbe markiert wurde. Bei der Erstellung des \emph{MMAX}-Projekts für die Annotierung konnte man verschiedenen Annotierungsebenen unterschiedliche Farben zuordnen, jedoch war es nicht ohne Weiteres möglich, diese Farben sinnvoll einzusetzen, wie das Beispiel in der Abbildung zeigt. Außerdem haben mit der Zeit länger werdende Ketten vermutlich ab einer gewissen Länge Speicherprobleme verursacht und zu korrupten Daten geführt, die wiederholte Abstürze für \emph{MMAX} zur Folge hatten. 
+
+Insgesamt haben diese Probleme dazu geführt, dass es nicht sinnvoll erschien, mehr Zeit in die Suche nach Fehlern und Alternativen bei der Konfiguration eines \emph{MMAX}-Projektes zu investieren. Das vorläufige Ziel des Vergleichs der mit \emph{MMAX} erstellten Ketten wurde folglich als praktisch unmöglich eingeschätzt. Aus diesem Grund hat sich die Frage ergeben, wie das Ziel, einen Goldstandard zu erhalten, auf einem anderen Weg zu erreichen ist.
 
 
 %~~~
 
 \subsubsection{Alternative Lösung}%TODO
+
+TODO: Standardweg: CoNLL
+
+\begin{table}[ht]
+\begin{center}
+  \begin{tabular}{ l || c | c | c ||  r }
+				& Reconcile 	& DCoref 	& DCoref (PP) 	& \\ \hline \hline
+    	Precision 	& 0.99673 	& 0.74510	& 0.74837		& \\ \hline
+    	Recall     	& 0.97917 	& 0.35775 	& 0.33861 		& \\ \hline
+    	FScore    	& 0.98787  	& 0.48340 	& 0.46625 		& \\ \hline
+  \end{tabular}
+  \caption{Auswertung der Ansätze mit einem MUC-Scorer}
+  \label{score:ergebnis}
+  \end{center}
+\end{table}
 
 Alternative Lösung \emph{DCoref} \autocite[S. 385 f.]{chris_haghighi}
 
@@ -356,20 +384,6 @@ Alternative Lösung \emph{DCoref} \autocite[S. 385 f.]{chris_haghighi}
 % \input{evaluierung} %TODO
 
 % \input{ausblick} %TODO
-
-
-%###########################################################################
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%###########################################################################
-
-\newpage
-
-\section{Demonstration NOTWENDIG??}\label{Demonstration} %TODO %NOTWENDIG??
-
-
-%###########################################################################
-
-\subsection{DCoref NOTWENDIG??}%TODO %NOTWENDIG??
 
 
 %###########################################################################
