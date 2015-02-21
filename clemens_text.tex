@@ -65,4 +65,53 @@ Abstand genommen haben, wurde von der Konvertierung in dieses Format abgesehen.
 Eine erste Analyse der Koreferenzketten, die die WebServer-Version von BART ausgab,
 unterstützte diese Entscheidung ebenfalls.
 
-%\subsection{Erstellung BuildIndex} %TODO titel
+<<<<<<< HEAD
+\subsection{Struktur BuildIndex} %TODO titel
+ 
+\subsubsection{Coref.java}
+mainklasse
+  
+  I/O Parser
+  
+  Usage msg
+  
+  call InputAnalyzer for each input.xml
+  
+  create map for coreferences with Coreference objects
+  
+  pass to OutputWriter
+  
+  call OutputWriter
+
+\subsubsection{Coreference.java}
+class def of Coreference objects
+  
+  attr.s text chapId corefId
+
+\subsubsection{InputAnalyzer.java}
+extract coref information
+  
+  create Map of Coreference object
+  
+    analyze input.xmls with jdom
+    
+    extract chapterID, corefID, representative mention text-element
+    
+    create Coreference object 
+    
+      ->pass to Map of Coreference object
+
+\subsubsection{OutputWriter.java}
+multimap with representative text as key and Coreference objs
+
+  create ArrayList if key not already existent
+
+  add coreference for key to ArrayList in multiMap for key
+
+  create output element
+  
+    write basic elements
+    
+    create sub elements for each coref in outputdoc
+  
+Write the complete result document to output XML file
