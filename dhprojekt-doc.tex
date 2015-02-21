@@ -129,6 +129,8 @@
 
 \usepackage{cleveref}
 
+\usepackage{footnote}
+
 
 %###########################################################################
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -171,7 +173,6 @@ an der Universität Trier
 Fachbereich II
 
 \bigskip
-
 \bigskip
 
 Verfasser:
@@ -189,8 +190,10 @@ Matrikelnummer: xxxxxx
 
 Matrikelnummer: 1007830
 
+\bigskip
+\bigskip
 
-% \bigskip
+24. Februar 2015
 
 \vfill
 
@@ -306,7 +309,7 @@ Im Folgenden werden \emph{Bart 2.0}, \emph{DCoref} und \emph{Reconcile} als Soft
 
 %~~~
 
-\subsubsection{Ausgangssituation}
+\subsubsection{Ausgangssituation}\label{Ausgangssituation}
 
 Wie bereits erwähnt, wurde \emph{BART 2.0} für den Vergleich der Ansätze zur Koreferenzresolution als Kandidat verworfen. Übrig geblieben sind also \emph{DCoref} und \emph{Reconcile}. Das Ziel des Vergleichs war es, mit einem MUC-Scorer anhand der Werte Precision, Recall und F-Score den besseren der verbleibenden zwei Kandidaten zu finden. Um einen Goldstandard für den Vergleich der beiden Ansätze zu erhalten, wurde die erste Hälfte des ersten Kapitels aus \emph{Uncle Tom's Cabin} \autocite[]{chris_uncle} als Testdatensatz für eine manuelle Annotierung mit Unterstützung des dafür vorgesehenen Softwarewerkzeugs \emph{MMAX} \autocite*[]{chris_mmax} verwendet \autocite[]{chris_mmax_coll}. Diese manuelle Annotierung sollte durch zwei Gruppenmitglieder durchgeführt und dann verglichen und verbessert werden, bevor der daraus resultierende Goldstandard für die Bewertung der beiden Ansätze verwendet wurde.
 
@@ -337,30 +340,64 @@ Insgesamt haben diese Probleme dazu geführt, dass es nicht sinnvoll erschien, m
 
 TODO: Standardweg: CoNLL
 
-\begin{table}[ht]
-\begin{center}
-  \begin{tabular}{ l || c | c | c ||  r }
-				& Reconcile 	& DCoref 	& DCoref (PP) 	& \\ \hline \hline
-    	Precision 	& 0.99673 	& 0.74510	& 0.74837		& \\ \hline
-    	Recall     	& 0.97917 	& 0.35775 	& 0.33861 		& \\ \hline
-    	FScore    	& 0.98787  	& 0.48340 	& 0.46625 		& \\ \hline
-  \end{tabular}
-  \caption{Auswertung der Ansätze mit einem MUC-Scorer}
-  \label{score:ergebnis}
-  \end{center}
-\end{table}
+Als alternativen Lösungsweg hin zu einem Vergleich der Precision-, Recall- und F-Score-Werte für \emph{DCoref} und \emph{Reconcile} hat sich dann die  für die Testdaten angeboten. Diese Ausgabe wurde manuell von zwei Annotatoren korrigiert, um einen Goldstandard zu erhalten. Dabei wurde das \emph{Reconcile}-Ausgabeformat beibehalten. Dann wurde die \emph{DCoref}-Ausgabe für die Testdaten ebenfalls in das \emph{Reconcile}-Ausgabeformat überführt, wie es in Listings  \ref{output:vergleich:decoref} und \ref{output:vergleich:reconcile} zu sehen ist. Dafür mussten lediglich die Informationen innerhalb des <coreferences>-Knotens im Reintext der Testdaten entsprechend als <NP>-Tags an den richtigen Stellen eingefügt werden.
 
-Alternative Lösung \emph{DCoref} \autocite[S. 385 f.]{chris_haghighi}
+\begin{lstlisting}[label=output:vergleich:decoref, name=vergleich_decoref.xml, language=xml, caption=Ausschnitt der \emph{DCoref}-Ausgabe für die Testdaten]
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<chapter id="1" title="In Which [...] Humanity">
+  <sentences/>
+  <coreferences>
+    ...
+    <coreference id="2">
+      <mention representative="true">
+        <sentence>1</sentence>
+        <start>34</start>
+        <end>35</end>
+        <head>34</head>
+        <text>Kentucky</text>
+      </mention>
+      ...
+    </coreference>
+    ...
+  </coreferences>
+</chapter>
+\end{lstlisting}
+
+\begin{lstlisting}[label=output:vergleich:reconcile, name=vergleich_reconcile.xml, language=xml, caption=Ausschnitt aus Listing \ref{output:vergleich:reconcile} im \emph{Reconcile}-Ausgabeformat]
+... in <NP NO="8" CorefID="8">Kentucky</NP>. There were ...
+\end{lstlisting}
+
+\noindent Für die Auswertung hat ein MUC-Scorer sowohl die nicht nachbearbeitete \emph{Reconcile}-Ausgabe als auch die umformatierte \emph{DCoref}-Ausgabe mit dem manuell erstellten Goldstandard verglichen. Die Ergebnisse dieses Auswertung sind in Tabelle \ref{score:ergebnis} zu finden.
+
+\begin{savenotes}
+	\begin{table}[ht]
+		\centering
+  		\begin{tabular}{ l || c | c | c ||  r }
+						& Reconcile 	& DCoref 	& DCoref (PP\footnote[1]{PP steht hier für das Post-Processing, das in der optionalen dritten Stufe von \emph{DCoref} stattfindet.}) 	& \\ \hline \hline
+    			Precision 	& 0.99673 	& 0.74510	& 0.74837		& \\ \hline
+    			Recall     	& 0.97917 	& 0.35775 	& 0.33861 		& \\ \hline
+    			FScore    	& 0.98787  	& 0.48340 	& 0.46625 		& \\ \hline
+  		\end{tabular}
+  		\caption{Auswertung der Ansätze mit einem MUC-Scorer}
+  		\label{score:ergebnis}
+	\end{table}
+\end{savenotes}
+
+Offensichtlich schneidet \emph{Reconcile} viel besser ab als \emph{DCoref}. Dieses Ergebnis liegt wahrscheinlich auch daran, dass die \emph{Reconcile}-Ausgabe als Ausgangspunkt für die Annotierung verwendet wurde, da auf diese Weise der Goldstandard und die \emph{Reconcile}-Ausgabe nicht unabhängig voneinander entstanden sind und deshalb sehr ähnlich sind. Außerdem zeigt die Auswertung auch, dass die optionale dritte Stufe, die bei \emph{DCoref} für die Nachverarbeitung zuständig ist, durch das Entfernen von relevanten \emph{mentions} die Scores negativ beeinflusst, wie es von den Autoren auch beschrieben wurde \autocite[29, 32]{chris_leeetal}.
+
+Da der hier vorgestellte Vergleich nicht optimal abgelaufen ist, wurde die Entscheidung getroffen, sowohl mit \emph{DCoref} als auch mit \emph{Reconcile} Koreferenzinformationen zu erschließen und die jeweilige Ausgabe wie von der dritten Gruppe gewünscht zu formatieren. Dabei wurden die beiden Ansätze allerdings nicht in ein einzelnes System integriert. Die Ausgabedaten wurden mithilfe von separaten Programmen erstellt und entsprechend umformatiert.
 
 
 %###########################################################################
 
-\subsection{Formatierung}%TODO
+\subsection{Formatierung}\label{Verlauf:Formatierung}%TODO
 
 
 %~~~
 
 \subsubsection{DCoref}%TODO
+
+\input{./text/chris/formatieren_dcoref.tex}
 
 
 %~~~
@@ -369,7 +406,7 @@ Alternative Lösung \emph{DCoref} \autocite[S. 385 f.]{chris_haghighi}
 
 %###########################################################################
 
-\subsection{Indizierung}%TODO
+\subsection{Indizierung}\label{Indizierung}%TODO
 
 
 
@@ -384,6 +421,47 @@ Alternative Lösung \emph{DCoref} \autocite[S. 385 f.]{chris_haghighi}
 % \input{evaluierung} %TODO
 
 % \input{ausblick} %TODO
+
+
+%###########################################################################
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%###########################################################################
+
+\newpage
+
+\section{Zusammenfassung}%TODO
+
+
+%###########################################################################
+
+\subsection{Aufgabenverteilung}%TODO
+
+Bei der Bestimmung der Kandidaten für die Auswahl eines geeigneten Ansatzes für die Koreferenzresolution hat jedes Gruppenmitglied einen Ansatz übernommen. Clemens Ahrens hat sich mit \emph{BART 2.0} beschäftigt, André Beyer mit \emph{Reconcile} und Christopher Michels mit \emph{DCoref}.
+
+Während Clemens Ahrens ein Programm für die Erstellung kapitelübergreifender Koreferenzketten entwickelt hat und nachdem \emph{BART 2.0} als Kandidat verworfen wurde, haben sich André Beyer und Christopher Michels mit dem Vergleich von \emph{DCoref} und \emph{Reconcile} beschäftigt. Nach vergeblichen Versuchen, \emph{MMAX} und in die betrachteten Softwarewerkzeuge integrierten Scorer für diese Aufgabe zu verwenden, wurde ein Goldstandard im \emph{Reconcile}-Ausgabeformat erstellt. Dann hat André Beyer einen MUC-Scorer für das gleiche Ausgabeformat entwickelt. Um \emph{DCoref} ebenfalls mit diesem MUC-Scorer bewerten zu können, hat Christopher Michels die Ausgabe von \emph{DCoref} für die Testdaten entsprechend umformatiert.
+
+Außerdem hat André Beyer ein Programm zur Umformatierung der Ausgabe von \emph{Reconcile} für das von der dritten Gruppe geforderte Ausgabeformat geschrieben. Analog hat Christopher Michels die Ausgabe von \emph{DCoref} für die Schnittstelle der dritten Gruppe umformatiert. Clemens Ahrens hat mithilfe von ersten funktionierenden Programmversionen unserer Gruppe vorläufige Testdaten für das Buch \emph{Uncle Tom's Cabin} \autocite[]{chris_uncle} an die dritte Gruppe weitergegeben, damit diese neben selbsterstellten Daten weiteres Testmaterial zur Verfügung hatte.
+
+%###########################################################################
+
+\subsection{Kommentar EVENTUELL?}\label{Kommentar}%TODO
+
+TODO: Sowas wie eine kurze abschließende Bewertung vielleicht? Mir (Chris) ist nur nichts Gutes eingefallen und ich muss noch für eine Klausur lernen. Wenn ich noch unbedingt was selbst ändern soll, sagt mir bitte bescheid. Wenn niemand sonst will, lassen wir es weg ... 
+
+
+%###########################################################################
+
+\subsection{Repositories}\label{Repositories}%TODO
+
+Die folgenden öffentlichen Repositories wurden auf \emph{GitHub} \autocite[]{chris_github} im Rahmen der Gruppenarbeit erstellt und verwendet. Dort sind weitere Details der erstellten Programme sowie Informationen zu deren Verwendung einsehbar.
+
+\begin{itemize}
+  \item Umwandler von \emph{Reconcile} zur Schnittstelle der dritten Gruppe:\par \url{https://github.com/beyeran/transform-reconcile}\vspace{0.3cm}
+  \item MUC Scorer für die \emph{Reconcile}-Dateien:\par \url{https://github.com/beyeran/score-coref}\vspace{0.3cm}
+  \item Umwandlung von \emph{DCoref} zur Schnittstelle der dritten Gruppe:\par \url{https://github.com/cmich/dh-projekt-gruppe2-dcoref}\vspace{0.3cm}
+  \item \emph{DCoref} für die Eingabedaten:\par \url{https://github.com/Rostu/dh-Projekt-Gruppe1}\vspace{0.3cm}
+  \item Erstellung der Indexdatei für kapitelübergreifende Koreferenzketten: \par \url{https://github.com/ClemensAhrens/BuildIndex}\vspace{0.3cm}
+\end{itemize}
 
 
 %###########################################################################

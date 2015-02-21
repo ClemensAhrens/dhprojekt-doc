@@ -1,0 +1,48 @@
+
+Nach Absprache fügt die erste Gruppe der Projektarbeit bereits Koreferenzinformationen hinzu, da sie die \emph{Stanford CoreNLP} ebenfalls verwendet und bereits für jedes der drei für dieses Projekt ausgewählten Bücher laufen lässt. Trotzdem bietet das Java-Programm, das für das Hinzufügen von Koreferenzinformationen mithilfe von \emph{DCoref} zuständig ist, die Möglichkeit, die \emph{Stanford CoreNLP} mit diesem Modul laufen zu lassen. Allerdings ist dieses Programm aufgrund der Absprache mit der ersten Gruppe standardmäßig so eingestellt, dass nur noch die Umformatierung in das von der dritten Gruppe gewünschte Format ausgeführt wird und anschließend die Erstellung der kapitelübergreifenden Koreferenzketten ausgeführt wird (s. Abschnitt \ref{Indizierung}).
+
+Listing \ref{input:decoref:plaintext} zeigt, dass Reintext als Eingabe erwartet wird, falls \emph{DCoref} noch Koreferenzinformationen hinzufügen muss, bevor die Ausgabe umformattiert wird. Der dafür gewählte Beispieltext stellt den eindeutigen Endpunkt der ersten Hälfte des ersten Kapitels im Buch \emph{Uncle Tom's Cabin} \autocite[]{chris_uncle} dar, der für die Testdaten vereinbart wurde (s. Abschnitt \ref{Ausgangssituation}).
+
+\begin{lstlisting}[label=input:decoref:plaintext, name=decoref_in_plain.xml, language=xml, caption={Reintext, Eingabe für \emph{DCoref}}]
+...
+And the trader leaned back in his chair, and folded his arm, with an air of virtuous decision, apparently considering himself a second Wilberforce. 
+\end{lstlisting}
+
+\noindent Die Ausgabe \emph{DCoref} ist in Listing \ref{output:decoref:unformatiert} zu sehen. Bei diesem Format sind zwei Dinge negativ aufgefallen. Einerseits kommt der <coreference>-Tag auf zwei verschiedene Arten vor: Er wird nicht nur für den Sammelknoten verwendet, der die eigentlichen XML-Knoten für die einzelnen Ketten enthält, sondern auch für die Knoten der Koreferenzketten selbst. Deshalb hat die dritte Gruppe um eine Umbenennung der Sammelknoten-Tags von <coreference> in <coreferences> gebeten. Für die Knoten der Koreferenzketten wurde außerdem eine eindeutige Nummerierung in Form eines \emph{id}-Attributs gebeten. 
+
+\begin{lstlisting}[label=output:decoref:unformatiert, name=decoref_out.xml, language=xml, caption={XML, Unformatierte Ausgabe von \emph{DCoref}}]
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="CoreNLP-to-HTML.xsl" type="text/xsl"?>
+<root>
+  <document>
+    <sentences/>
+    <coreference>
+      ...
+      <coreference>
+        <mention representative="true"/>
+        ...
+      </coreference>
+      ...
+    </coreference>
+  </document>
+</root>
+\end{lstlisting}
+
+\noindent Durch eine Umformatierung werden die von der dritten Gruppe beschriebenen Mängel behoben. Dadurch wird das ursprüngliche Ausgabeformat von \emph{DCoref} in das in Listing \ref{output:decoref:formatiert} gezeigte endgültige Format gebracht. Dieses Format ist ebenfalls gruppenintern für die Schnittstelle zum Programm für die Erstellung der kapitelübergreifenden Koreferenzketten festgelegt worden.   
+
+\begin{lstlisting}[label=output:decoref:formatiert, name=decoref_out_formatted.xml, language=xml, caption={XML, Formatierte Ausgabe von \emph{DCoref}}]
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<chapter id="1" title="In Which [...] Humanity">
+  <sentences/>
+  <coreferences>
+    ...
+    <coreference id="1">
+      <mention representative="true">
+      ...
+    </coreference>
+    ...
+  </coreferences>
+</chapter>
+\end{lstlisting}
+
+\noindent Das Programm für \emph{DCoref} bietet auch die Möglichkeit, die optionale dritte Stufe des Moduls auszuführen. Die Dateien, die bei der Auswahl dieser Option erstellt werden, werden entsprechend gekennzeichnet bzw. in separaten Ordnern abgelegt, um sie von eventuell bereits vorhandenen anderen Dateien zu unterscheiden. Diese Unterscheidung betrifft die Ausgabedateien der ersten Gruppe für jedes einzelne Kapitel sowie die durch den Aufruf des Programms für die Erstellung kapitelübergreifender Ketten erstellte Indexdatei. Weitere Details zu der verwendeten Ordnerstruktur und zu dieser Unterscheidung befinden sich in den im Rahmen des Projektes verwendeten öffentlichen \emph{GitHub}-Repositories (s. Abschnitt \ref{Repositories}).
