@@ -1,0 +1,25 @@
+% !TEX encoding = UTF-8
+
+\subsubsection{Steckbrief}
+
+Das Werkzeug \emph{DCoref} ist ein deterministisches Modul zur Koreferenzresolution und ist Teil der \emph{Stanford CoreNLP}. Für die Verwendung dieses Moduls ist vorausgesetzt, dass andere Module vorher auf die Eingabedaten angewendet worden sind \autocite[]{chris_stanford_dcoref}. Die Module für Wortart- und Lemmabestimmung sowie Named Entitiy Recognition und für einen Parser müssen als sogenannte Annotatoren beim Verwenden der \emph{Stanford CoreNLP} wie in Listing \ref{dcoref:required_annotators} angebeben werden.
+
+\begin{lstlisting}[label=dcoref:required_annotators, language=Java, caption=Angabe vorausgesetzter Annotatoren in Java]
+//	configure properties for pipeline of the Stanford CoreNLP
+Properties properties = new Properties();
+properties.setProperty("annotators", 
+		"pos, lemma, ner, parse, dcoref");
+//	[...] set more properties and instantiate pipeline
+StanfordCoreNLP pipeline = new StanfordCoreNLP(properties);
+\end{lstlisting}
+
+\noindent Außerdem ist \emph{DCoref} grundsätzlich ein zweistufiges Modul, das mit mehreren sogenannten Sieben arbeitet. Die erste Stufe legt großen Wert auf Recall und dient der Identifizierung von vorhandenen \emph{mentions} (\hyphenquote{UKenglish}{A mention is an observed textual reference to a latent real-world entity. Mentions are associated with nodes in a parse tree and are typically realized as NPs.} \autocite[S. 385 f.]{chris_haghighi}). Die zweite Stufe siebt das Ergebnis der ersten Stufe mit mehreren Sieben aus, wobei die Siebe absteigend gemäß ihrer Precision-Werte nacheinander angewendet werden \autocite[S. 28 f.]{chris_leeetal}. 
+
+Es gibt noch eine weitere optionale Stufe, die das Endergebnis der zweiten Stufe noch weiterverarbeitet. Dabei werden Koreferenzketten mit nur einem Element entfernt und auch \emph{mentions} entfernt, die als appositive oder copulative Textelemente auftauchen \autocite[29]{chris_leeetal}. Dieses Stufe ist optional, weil fälschlicherweise aufgeführte \emph{mentions} die Score-Werte für \emph{DCoref} nicht so sehr negativ beeinflussen wie gänzlich fehlende relevante \emph{mentions} \autocite[32]{chris_leeetal}.
+
+
+\subsubsection{Probleme}
+
+Bei der Verwendung von \emph{DCoref} sind vor allem fehlende Informationen aufgefallen. Obwohl die Dokumentation auf der Homepage des Moduls \autocite[]{chris_stanford_dcoref} zunächst sehr ausführlich erscheint, verweist sie auf Download-Links, die auf Archive verweisen, in denen Dateien fehlen, wie z.B. ein Perl-Skript, das für den CoNLL-Scorer benötigt wird ist nicht vorhanden. Dieses Skript konnte man jedoch nach einer kurzen Suche leicht finden. Obwohl angegeben ist, dass man den Pfad zu diesem Skript als Option angeben kann, scheint diese Option ignoriert zu werden und ein im Code fest vorgegebener Pfad wird trotzdem verwendet. Außerdem wird nicht angegeben, dass man neben einer Standardinstallation von Perl ein bestimmtes Paket (\emph{Algorithm-Munkres}) nachinstallieren muss, da sonst das Skript nicht ausführbar ist. Versucht man, dieses Skript trotzdem über die \emph{Stanford CoreNLP} auszuführen, erfährt man nichts von dieser speziellen Fehlerursache.
+
+Neben der Reproduktion der Score-Werte, die für die \emph{CoNLL Shared Task 2011} bestimmt wurden, sind noch andere Optionen für den in das Modul \emph{DCoref} integrierten Scorer aufgelistet, z.B. die Verwendung des Scorers für Daten im MUC6- oder ACE2004-Format. Jedoch musste der Versuch, diesen Scorer für das MUC6-Format beim Vergleichen der Ansätze zur Koreferenzresolution zu verwenden, aus Zeitgründen ergebnislos aufgegeben werden, da die Verwendung auch nach mehreren Versuchen nicht so funktioniert hat, wie die Dokumentation es angedeutet hat. 
