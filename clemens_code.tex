@@ -129,8 +129,7 @@ import org.jdom.input.SAXBuilder;
 public class InputAnalyzer {
 
 	File infile;
-	List<String> listOfText;
-
+	
 	public InputAnalyzer(String filename) throws Exception {
 		infile = new File(filename);
 		if (!infile.exists()) {
@@ -140,7 +139,6 @@ public class InputAnalyzer {
 
 	public Map<String, Coreference> extractCoreferences() {
 		Map<String, Coreference> map = new HashMap<String, Coreference>();
-		listOfText = new ArrayList<>();
 
 		// aufrufen des builders pro input
 		SAXBuilder builder = new SAXBuilder();
