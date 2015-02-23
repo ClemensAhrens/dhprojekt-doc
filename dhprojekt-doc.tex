@@ -187,7 +187,7 @@ Matrikelnummer: 1116125
 
 Matrikelnummer: xxxxxx
 
-\textbf{Christopher Michels} %TODO
+\textbf{Christopher Michels}
 
 Matrikelnummer: 1007830
 
@@ -249,22 +249,25 @@ Matrikelnummer: 1007830
 \newpage
 \pagenumbering{arabic}
 
-\section{Einleitung}\label{Einleitung} %TODO
+\section{Einleitung}\label{Einleitung} 
 
 Im Rahmen des Seminars \emph{Praxis der Digital Humanities} haben sich die einzelnen Gruppen vorgenommen, 
 ein Werkzeug zu entwickeln, das literaturwissenschaftliche Arbeit unterstützt. 
-Diese Hilfssoftware soll dazu dienen, die stereotype Darstellung von einzelnen Personen oder Gruppen in Texten zu analysieren 
-und zu visualiseren. 
-Vor diesem Hintergrund baut die hier vorgestellte Arbeit der zweiten Gruppe auf den Vorverarbeitungsschritten der ersten Gruppe auf 
-und fügt für die drei Werke \emph{Uncle Tom's Cabin}  \autocite[]{chris_uncle}, 
+Diese Hilfssoftware soll dazu dienen, 
+die stereotype Darstellung von einzelnen Personen oder Gruppen in Texten zu analysieren und zu visualiseren. 
+Vor diesem Hintergrund baut die hier vorgestellte Arbeit der zweiten Gruppe auf den Vorverarbeitungsschritten 
+der ersten Gruppe auf und fügt für die drei Werke \emph{Uncle Tom's Cabin}  \autocite[]{chris_uncle}, 
 \emph{To Kill a Mockingbird}  \autocite[]{chris_bird} und 
-\emph{The Adventures of Huckleberry Finn: Tom Sawyer} \autocite[]{chris_adventures} \textbf{Informationen zu Koreferenzketten} hinzu. 
-Auf diese Weise trägt die Gruppe zwei neben der \emph{Named Entity Recognition} als Vorverarbeitungsschritt der ersten Gruppe dazu bei, 
-dass die Protagonisten erkennbar werden und so von der dritten Gruppe auf ihre literarische Darstellung hin untersucht werden können.
+\emph{The Adventures of Huckleberry Finn: Tom Sawyer} \autocite[]{chris_adventures} 
+\textbf{Informationen zu Koreferenzketten} hinzu. 
+Auf diese Weise trägt die Gruppe zwei neben der \emph{Named Entity Recognition} als Vorverarbeitungsschritt 
+der ersten Gruppe dazu bei, dass die Protagonisten erkennbar werden und 
+so von der dritten Gruppe auf ihre literarische Darstellung hin untersucht werden können.
 
 Im Folgenden werden \emph{Bart 2.0}, \emph{DCoref} und \emph{Reconcile} als Software vorgestellt, 
 die zunächst für die Koreferenzresolution in Betracht gezogen wurden. 
-Dieser Ausgangspunkt stellte die zweite Gruppe vor die Aufgabe, die einzelnen Werkzeuge zu bewerten und zu vergleichen. 
+Dieser Ausgangspunkt stellte die zweite Gruppe vor die Aufgabe, die einzelnen Werkzeuge zu bewerten 
+und zu vergleichen. 
 Nach der Zusammenfassung des Verlaufs und der Ergebnisse dieses Vergleichs wird anschließend knapp dargestellt, 
 welche Formatierungsanforderungen für die Schnittstellen zu den anderen Gruppen beachtet werden mussten 
 und wie kapitelbezogene Koreferenzketten zu kapitelübergreifenden Ketten zusammengefasst wurden. 
@@ -326,14 +329,28 @@ Zuletzt folgt ein Beispiel für die Verwendung und die Ausgabe eines der Werkzeu
 
 \subsubsection{Ausgangssituation}\label{Ausgangssituation}
 
-Wie bereits erwähnt, wurde \emph{BART 2.0} für den Vergleich der Ansätze zur Koreferenzresolution als Kandidat verworfen. Übrig geblieben sind also \emph{DCoref} und \emph{Reconcile}. Das Ziel des Vergleichs war es, mit einem MUC-Scorer anhand der Werte Precision, Recall und F-Score den besseren der verbleibenden zwei Kandidaten zu finden. Um einen Goldstandard für den Vergleich der beiden Ansätze zu erhalten, wurde die erste Hälfte des ersten Kapitels aus \emph{Uncle Tom's Cabin} \autocite[]{chris_uncle} als Testdatensatz für eine manuelle Annotierung mit Unterstützung des dafür vorgesehenen Softwarewerkzeugs \emph{MMAX} \autocite*[]{chris_mmax} verwendet \autocite[]{chris_mmax_coll}. Diese manuelle Annotierung sollte durch zwei Gruppenmitglieder durchgeführt und dann verglichen und verbessert werden, bevor der daraus resultierende Goldstandard für die Bewertung der beiden Ansätze verwendet wurde.
+Wie bereits erwähnt, wurde \emph{BART 2.0} für den Vergleich der Ansätze zur Koreferenzresolution 
+als Kandidat verworfen. Übrig geblieben sind also \emph{DCoref} und \emph{Reconcile}. 
+Das Ziel des Vergleichs war es, mit einem MUC-Scorer anhand der Werte Precision, Recall und F-Score 
+den besseren der verbleibenden zwei Kandidaten zu finden. 
+Um einen Goldstandard für den Vergleich der beiden Ansätze zu erhalten, 
+wurde die erste Hälfte des ersten Kapitels aus \emph{Uncle Tom's Cabin} \autocite[]{chris_uncle} 
+als Testdatensatz für eine manuelle Annotierung mit Unterstützung 
+des dafür vorgesehenen Softwarewerkzeugs \emph{MMAX} \autocite*[]{chris_mmax} 
+verwendet \autocite[]{chris_mmax_coll}.
+Diese manuelle Annotierung sollte durch zwei Gruppenmitglieder durchgeführt und dann verglichen und 
+verbessert werden, bevor der daraus resultierende Goldstandard für die Bewertung 
+der beiden Ansätze verwendet wurde.
 
 
 %~~~
 
 \subsubsection{Probleme mit MMAX}%TODO
 
-Die Verwendung von \emph{MMAX} hat bereits von Anfang an zu Problemen geführt. Trotz der vorhandenen Dokumentation war es schwierig, \emph{MMAX} zu verwenden. Beide Annotatoren hatten zunächst den Eindruck, das Werkzeug nicht richtig zu verwenden. Ein Beispiel dafür zeigt Abbildung \ref{mmax:anzeige}.
+Die Verwendung von \emph{MMAX} hat bereits von Anfang an zu Problemen geführt. 
+Trotz der vorhandenen Dokumentation war es schwierig, \emph{MMAX} zu verwenden. 
+Beide Annotatoren hatten zunächst den Eindruck, das Werkzeug nicht richtig zu verwenden. 
+Ein Beispiel dafür zeigt Abbildung \ref{mmax:anzeige}.
 
 \begin{figure}[ht]
 \begin{center}
@@ -344,9 +361,27 @@ Die Verwendung von \emph{MMAX} hat bereits von Anfang an zu Problemen geführt. 
 \end{center}
 \end{figure}
 
-Darin ist zu sehen, wie mithilfe von \emph{MMAX} versucht wurde, eine Koreferenzkette für den Protagonisten \emph{Haley} in \emph{Uncle Tom's Cabin} \autocite[]{chris_uncle} zu erstellen. Die Hervorhebung der Kette in gelber Farbe kann über ein mit einem Rechtsklick erreichbares Kontextmenü aktiviert werden, allerdings findet diese Hervorhebung nur in dem im aktuellen Fensterausschnitt sichtbaren Teil des Textes statt. Die türkise Farbe war ursprünglich als Markierungsfarbe für die Kette eines bestimmten Protagonisten gedacht. Dieses Vorhaben hat jedoch nicht funktioniert, da jedes einzelne Wort im Text mit türkiser Farbe markiert wurde. Bei der Erstellung des \emph{MMAX}-Projekts für die Annotierung konnte man verschiedenen Annotierungsebenen unterschiedliche Farben zuordnen, jedoch war es nicht ohne Weiteres möglich, diese Farben sinnvoll einzusetzen, wie das Beispiel in der Abbildung zeigt. Außerdem haben mit der Zeit länger werdende Ketten vermutlich ab einer gewissen Länge Speicherprobleme verursacht und zu korrupten Daten geführt, die wiederholte Abstürze für \emph{MMAX} zur Folge hatten. 
+Darin ist zu sehen, wie mithilfe von \emph{MMAX} versucht wurde, eine Koreferenzkette 
+für den Protagonisten \emph{Haley} in \emph{Uncle Tom's Cabin} \autocite[]{chris_uncle} zu erstellen. 
+Die Hervorhebung der Kette in gelber Farbe kann über ein mit einem Rechtsklick erreichbares Kontextmenü 
+aktiviert werden, allerdings findet diese Hervorhebung nur in dem im aktuellen Fensterausschnitt 
+sichtbaren Teil des Textes statt. 
+Die türkise Farbe war ursprünglich als Markierungsfarbe für die Kette eines bestimmten Protagonisten gedacht. 
+Dieses Vorhaben hat jedoch nicht funktioniert, da jedes einzelne Wort im Text mit türkiser Farbe markiert wurde. 
+Bei der Erstellung des \emph{MMAX}-Projekts für die Annotierung konnte man 
+verschiedenen Annotierungsebenen unterschiedliche Farben zuordnen, 
+jedoch war es nicht ohne Weiteres möglich, diese Farben sinnvoll einzusetzen, 
+wie das Beispiel in der Abbildung zeigt. 
+Außerdem haben mit der Zeit länger werdende Ketten vermutlich ab einer gewissen Länge Speicherprobleme verursacht 
+und zu korrupten Daten geführt, die wiederholte Abstürze für \emph{MMAX} zur Folge hatten. 
 
-Insgesamt haben diese Probleme dazu geführt, dass es nicht sinnvoll erschien, mehr Zeit in die Suche nach Fehlern und Alternativen bei der Konfiguration eines \emph{MMAX}-Projektes zu investieren. Das vorläufige Ziel des Vergleichs der mit \emph{MMAX} erstellten Ketten wurde folglich als praktisch unmöglich eingeschätzt. Aus diesem Grund hat sich die Frage ergeben, wie das Ziel, einen Goldstandard zu erhalten, auf einem anderen Weg zu erreichen ist.
+Insgesamt haben diese Probleme dazu geführt, dass es nicht sinnvoll erschien, 
+mehr Zeit in die Suche nach Fehlern und Alternativen bei der Konfiguration 
+eines \emph{MMAX}-Projektes zu investieren. 
+Das vorläufige Ziel des Vergleichs der mit \emph{MMAX} erstellten Ketten wurde folglich 
+als praktisch unmöglich eingeschätzt. 
+Aus diesem Grund hat sich die Frage ergeben, wie das Ziel, einen Goldstandard zu erhalten, 
+auf einem anderen Weg zu erreichen ist.
 
 
 %~~~
@@ -355,7 +390,14 @@ Insgesamt haben diese Probleme dazu geführt, dass es nicht sinnvoll erschien, m
 
 TODO: Standardweg: CoNLL
 
-Als alternativen Lösungsweg hin zu einem Vergleich der Precision-, Recall- und F-Score-Werte für \emph{DCoref} und \emph{Reconcile} hat sich dann die  für die Testdaten angeboten. Diese Ausgabe wurde manuell von zwei Annotatoren korrigiert, um einen Goldstandard zu erhalten. Dabei wurde das \emph{Reconcile}-Ausgabeformat beibehalten. Dann wurde die \emph{DCoref}-Ausgabe für die Testdaten ebenfalls in das \emph{Reconcile}-Ausgabeformat überführt, wie es in Listings  \ref{output:vergleich:decoref} und \ref{output:vergleich:reconcile} zu sehen ist. Dafür mussten lediglich die Informationen innerhalb des <coreferences>-Knotens im Reintext der Testdaten entsprechend als <NP>-Tags an den richtigen Stellen eingefügt werden.
+Als alternativen Lösungsweg hin zu einem Vergleich der Precision-, Recall- und F-Score-Werte für \emph{DCoref} 
+und \emph{Reconcile} hat sich dann die  für die Testdaten angeboten. %TODO clemens: hier fehlt ein wort nach ``dann die''
+Diese Ausgabe wurde manuell von zwei Annotatoren korrigiert, um einen Goldstandard zu erhalten. 
+Dabei wurde das \emph{Reconcile}-Ausgabeformat beibehalten. 
+Dann wurde die \emph{DCoref}-Ausgabe für die Testdaten ebenfalls in das \emph{Reconcile}-Ausgabeformat überführt, 
+wie es in Listings  \ref{output:vergleich:decoref} und \ref{output:vergleich:reconcile} zu sehen ist. 
+Dafür mussten lediglich die Informationen innerhalb des <coreferences>-Knotens im Reintext der Testdaten 
+entsprechend als <NP>-Tags an den richtigen Stellen eingefügt werden.
 
 \begin{lstlisting}[label=output:vergleich:decoref, name=vergleich_decoref.xml, language=xml, caption=Ausschnitt der \emph{DCoref}-Ausgabe für die Testdaten]
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -382,7 +424,10 @@ Als alternativen Lösungsweg hin zu einem Vergleich der Precision-, Recall- und 
 ... in <NP NO="8" CorefID="8">Kentucky</NP>. There were ...
 \end{lstlisting}
 
-\noindent Für die Auswertung hat ein MUC-Scorer sowohl die nicht nachbearbeitete \emph{Reconcile}-Ausgabe als auch die umformatierte \emph{DCoref}-Ausgabe mit dem manuell erstellten Goldstandard verglichen. Die Ergebnisse dieses Auswertung sind in Tabelle \ref{score:ergebnis} zu finden.
+\noindent 
+Für die Auswertung hat ein MUC-Scorer sowohl die nicht nachbearbeitete \emph{Reconcile}-Ausgabe als auch 
+die umformatierte \emph{DCoref}-Ausgabe mit dem manuell erstellten Goldstandard verglichen. 
+Die Ergebnisse dieses Auswertung sind in Tabelle \ref{score:ergebnis} zu finden.
 
 \begin{savenotes}
 	\begin{table}[ht]
@@ -398,9 +443,20 @@ Als alternativen Lösungsweg hin zu einem Vergleich der Precision-, Recall- und 
 	\end{table}
 \end{savenotes}
 
-Offensichtlich schneidet \emph{Reconcile} viel besser ab als \emph{DCoref}. Dieses Ergebnis liegt wahrscheinlich auch daran, dass die \emph{Reconcile}-Ausgabe als Ausgangspunkt für die Annotierung verwendet wurde, da auf diese Weise der Goldstandard und die \emph{Reconcile}-Ausgabe nicht unabhängig voneinander entstanden sind und deshalb sehr ähnlich sind. Außerdem zeigt die Auswertung auch, dass die optionale dritte Stufe, die bei \emph{DCoref} für die Nachverarbeitung zuständig ist, durch das Entfernen von relevanten \emph{mentions} die Scores negativ beeinflusst, wie es von den Autoren auch beschrieben wurde \autocite[29, 32]{chris_leeetal}.
+Offensichtlich schneidet \emph{Reconcile} viel besser ab als \emph{DCoref}. 
+Dieses Ergebnis liegt wahrscheinlich auch daran, dass die \emph{Reconcile}-Ausgabe als 
+Ausgangspunkt für die Annotierung verwendet wurde, da auf diese Weise der Goldstandard und 
+die \emph{Reconcile}-Ausgabe nicht unabhängig voneinander entstanden sind und deshalb sehr ähnlich sind. 
+Außerdem zeigt die Auswertung auch, dass die optionale dritte Stufe, 
+die bei \emph{DCoref} für die Nachverarbeitung zuständig ist, 
+durch das Entfernen von relevanten \emph{mentions} die Scores negativ beeinflusst, 
+wie es von den Autoren auch beschrieben wurde \autocite[29, 32]{chris_leeetal}.
 
-Da der hier vorgestellte Vergleich nicht optimal abgelaufen ist, wurde die Entscheidung getroffen, sowohl mit \emph{DCoref} als auch mit \emph{Reconcile} Koreferenzinformationen zu erschließen und die jeweilige Ausgabe wie von der dritten Gruppe gewünscht zu formatieren. Dabei wurden die beiden Ansätze allerdings nicht in ein einzelnes System integriert. Die Ausgabedaten wurden mithilfe von separaten Programmen erstellt und entsprechend umformatiert.
+Da der hier vorgestellte Vergleich nicht optimal abgelaufen ist, wurde die Entscheidung getroffen, 
+sowohl mit \emph{DCoref} als auch mit \emph{Reconcile} Koreferenzinformationen zu erschließen 
+und die jeweilige Ausgabe wie von der dritten Gruppe gewünscht zu formatieren. 
+Dabei wurden die beiden Ansätze allerdings nicht in ein einzelnes System integriert. 
+Die Ausgabedaten wurden mithilfe von separaten Programmen erstellt und entsprechend umformatiert.
 
 
 %###########################################################################
@@ -421,20 +477,9 @@ Da der hier vorgestellte Vergleich nicht optimal abgelaufen ist, wurde die Entsc
 
 %###########################################################################
 
-\subsection{Indizierung - Struktur BuildIndex}\label{Indizierung}%TODO
+\subsection{Indizierung}\label{Indizierung}
 
 \input{clemens_index}
-
-%\input{clemens_code} %TODO
-
-% \input{generierung} %TODO
-
-% \input{normalisierung} %TODO
-
-% \input{evaluierung} %TODO
-
-% \input{ausblick} %TODO
-
 
 %###########################################################################
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -449,24 +494,46 @@ Da der hier vorgestellte Vergleich nicht optimal abgelaufen ist, wurde die Entsc
 
 \subsection{Aufgabenverteilung}%TODO
 
-Bei der Bestimmung der Kandidaten für die Auswahl eines geeigneten Ansatzes für die Koreferenzresolution hat jedes Gruppenmitglied einen Ansatz übernommen. Clemens Ahrens hat sich mit \emph{BART 2.0} beschäftigt, André Beyer mit \emph{Reconcile} und Christopher Michels mit \emph{DCoref}.
+Bei der Bestimmung der Kandidaten für die Auswahl eines geeigneten Ansatzes für die Koreferenzresolution 
+hat jedes Gruppenmitglied einen Ansatz übernommen. 
+Clemens Ahrens hat sich mit \emph{BART 2.0} beschäftigt, André Beyer mit \emph{Reconcile} und 
+Christopher Michels mit \emph{DCoref}.
 
-Während Clemens Ahrens ein Programm für die Erstellung kapitelübergreifender Koreferenzketten entwickelt hat und nachdem \emph{BART 2.0} als Kandidat verworfen wurde, haben sich André Beyer und Christopher Michels mit dem Vergleich von \emph{DCoref} und \emph{Reconcile} beschäftigt. Nach vergeblichen Versuchen, \emph{MMAX} und in die betrachteten Softwarewerkzeuge integrierten Scorer für diese Aufgabe zu verwenden, wurde ein Goldstandard im \emph{Reconcile}-Ausgabeformat erstellt. Dann hat André Beyer einen MUC-Scorer für das gleiche Ausgabeformat entwickelt. Um \emph{DCoref} ebenfalls mit diesem MUC-Scorer bewerten zu können, hat Christopher Michels die Ausgabe von \emph{DCoref} für die Testdaten entsprechend umformatiert.
+Während Clemens Ahrens ein Programm für die Erstellung kapitelübergreifender Koreferenzketten entwickelt hat 
+und nachdem \emph{BART 2.0} als Kandidat verworfen wurde, 
+haben sich André Beyer und Christopher Michels mit dem Vergleich von \emph{DCoref} 
+und \emph{Reconcile} beschäftigt. 
+Nach vergeblichen Versuchen, \emph{MMAX} und in die betrachteten Softwarewerkzeuge integrierten Scorer 
+für diese Aufgabe zu verwenden, wurde ein Goldstandard im \emph{Reconcile}-Ausgabeformat erstellt. 
+Dann hat André Beyer einen MUC-Scorer für das gleiche Ausgabeformat entwickelt. 
+Um \emph{DCoref} ebenfalls mit diesem MUC-Scorer bewerten zu können, 
+hat Christopher Michels die Ausgabe von \emph{DCoref} für die Testdaten entsprechend umformatiert.
 
-Außerdem hat André Beyer ein Programm zur Umformatierung der Ausgabe von \emph{Reconcile} für das von der dritten Gruppe geforderte Ausgabeformat geschrieben. Analog hat Christopher Michels die Ausgabe von \emph{DCoref} für die Schnittstelle der dritten Gruppe umformatiert. Clemens Ahrens hat mithilfe von ersten funktionierenden Programmversionen unserer Gruppe vorläufige Testdaten für das Buch \emph{Uncle Tom's Cabin} \autocite[]{chris_uncle} an die dritte Gruppe weitergegeben, damit diese neben selbsterstellten Daten weiteres Testmaterial zur Verfügung hatte.
+Außerdem hat André Beyer ein Programm zur Umformatierung der Ausgabe von \emph{Reconcile} für das 
+von der dritten Gruppe geforderte Ausgabeformat geschrieben. 
+Analog hat Christopher Michels die Ausgabe von \emph{DCoref} für die Schnittstelle der dritten Gruppe umformatiert. 
+Clemens Ahrens hat mithilfe von ersten funktionierenden Programmversionen unserer Gruppe vorläufige Testdaten 
+für das Buch \emph{Uncle Tom's Cabin} \autocite[]{chris_uncle} an die dritte Gruppe weitergegeben, 
+damit diese neben selbsterstellten Daten weiteres Testmaterial zur Verfügung hatte.
 
 %###########################################################################
 
 \subsection{Kommentar EVENTUELL?}\label{Kommentar}%TODO
 
-TODO: Sowas wie eine kurze abschließende Bewertung vielleicht? Mir (Chris) ist nur nichts Gutes eingefallen und ich muss noch für eine Klausur lernen. Wenn ich noch unbedingt was selbst ändern soll, sagt mir bitte bescheid. Wenn niemand sonst will, lassen wir es weg ... 
+TODO: Sowas wie eine kurze abschließende Bewertung vielleicht? 
+Mir (Chris) ist nur nichts Gutes eingefallen und ich muss noch für eine Klausur lernen. 
+Wenn ich noch unbedingt was selbst ändern soll, sagt mir bitte bescheid. 
+Wenn niemand sonst will, lassen wir es weg ...
+Clemens: ich denke nicht, dass wir hier noch was brauchen.
 
 
 %###########################################################################
 
 \subsection{Repositories}\label{Repositories}%TODO
 
-Die folgenden öffentlichen Repositories wurden auf \emph{GitHub} \autocite[]{chris_github} im Rahmen der Gruppenarbeit erstellt und verwendet. Dort sind weitere Details der erstellten Programme sowie Informationen zu deren Verwendung einsehbar.
+Die folgenden öffentlichen Repositories wurden auf \emph{GitHub} \autocite[]{chris_github} im Rahmen 
+der Gruppenarbeit erstellt und verwendet. 
+Dort sind weitere Details der erstellten Programme sowie Informationen zu deren Verwendung einsehbar.
 
 \begin{itemize}
   \item Umwandler von \emph{Reconcile} zur Schnittstelle der dritten Gruppe:\par \url{https://github.com/beyeran/transform-reconcile}\vspace{0.3cm}
