@@ -1,48 +1,71 @@
 % !TEX encoding = UTF-8
-\subsubsection{Coref.java}
-mainklasse
-  
-  I/O Parser
-  
-  Usage msg
-  
-  call InputAnalyzer for each input.xml
-  
-  create map for coreferences with Coreference objects
-  
-  pass to OutputWriter
-  
-  call OutputWriter
+Die Erstellung des Index erfolgt durch die Verarbeitung von Dateien wie in Listing\ref{output:decoref:formatiert} dargestellt.
+Hierbei wird das Attribut \lstinline[language=XML]{representative="true"} verwendet, 
+um die entsprechenden Koreferenzen zusammenzufassen.
 
-\subsubsection{Coreference.java}
-class def of Coreference objects
-  
-  attr.s text chapId corefId
+Außerdem wird der Output den Bedürfnissen von Gruppe 3 angepasst.
+Das abschließende Ausgabeformat hat die Form, wie sie in Listing \ref{output:buildIndex} zu sehen ist.
 
-\subsubsection{InputAnalyzer.java}
-extract coref information
-  
-  create Map of Coreference object
-  
-    analyze input.xmls with jdom
-    
-    extract chapterID, corefID, representative mention text-element
-    
-    create Coreference object 
-    
-      ->pass to Map of Coreference object
+\begin{lstlisting}[label=output:buildIndex, name=index.xml, language=xml, caption={XML, Formatierte Ausgabe von \emph{BuildIndex}}]
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <chains>
+    <chain text="these two">
+      <coreference>
+        <id>38</id>
+        <chapter>37</chapter>
+      </coreference>
+      <coreference>
+        <id>86</id>
+        <chapter>5</chapter>
+      </coreference>
+   ...
+</root>
+\end{lstlisting}
 
-\subsubsection{OutputWriter.java}
-multimap with representative text as key and Coreference objs
-
-  create ArrayList if key not already existent
-
-  add coreference for key to ArrayList in multiMap for key
-
-  create output element
-  
-    write basic elements
-    
-    create sub elements for each coref in outputdoc
-  
-Write the complete result document to output XML file
+% mainklasse
+%   
+%   I/O Parser
+%   
+%   Usage msg
+%   
+%   call InputAnalyzer for each input.xml
+%   
+%   create map for coreferences with Coreference objects
+%   
+%   pass to OutputWriter
+%   
+%   call OutputWriter
+% 
+% \subsubsection{Coreference.java}
+% class def of Coreference objects
+%   
+%   attr.s text chapId corefId
+% 
+% \subsubsection{InputAnalyzer.java}
+% extract coref information
+%   
+%   create Map of Coreference object
+%   
+%     analyze input.xmls with jdom
+%     
+%     extract chapterID, corefID, representative mention text-element
+%     
+%     create Coreference object 
+%     
+%       ->pass to Map of Coreference object
+% 
+% \subsubsection{OutputWriter.java}
+% multimap with representative text as key and Coreference objs
+% 
+%   create ArrayList if key not already existent
+% 
+%   add coreference for key to ArrayList in multiMap for key
+% 
+%   create output element
+%   
+%     write basic elements
+%     
+%     create sub elements for each coref in outputdoc
+%   
+% Write the complete result document to output XML file
